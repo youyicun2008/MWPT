@@ -1,44 +1,44 @@
 
-%% »ù´¡²ÎÊıÊäÈë
-sampleLen = 1000;  % ²¨ĞÎÊ±¼ä³¤¶È£¨²ÉÑùµãÊı£©
-fs = 1000; % ²¨ĞÎµÄ²ÉÑùÆµÂÊ£¬Hz
-fm = 75;  % ĞÅºÅµÄÖ÷Æµ£¨ÖĞĞÄÆµÂÊ£©£¬Hz
-fig = 0;   % ÊÇ·ñ»­Í¼£¬0Îª·ñ£¬1ÎªÊÇ
-ap = 0.7;  % Éè¶¨×Ó²¨·åÖµÎ»ÖÃ
-no = -25;    % ¼ÓÈë°×Ôë£¬µ¥Î»db£¬wgnº¯ÊıµÄ²ÎÊı
-timeDic = 1000*(0:1/fs:1/fs*(sampleLen-1)); % ×ª»¯µ½ms
-%% Éú³ÉÀ×¿Ë×Ó²¨
+%% åŸºç¡€å‚æ•°è¾“å…¥
+sampleLen = 1000;  % æ³¢å½¢æ—¶é—´é•¿åº¦ï¼ˆé‡‡æ ·ç‚¹æ•°ï¼‰
+fs = 1000; % æ³¢å½¢çš„é‡‡æ ·é¢‘ç‡ï¼ŒHz
+fm = 75;  % ä¿¡å·çš„ä¸»é¢‘ï¼ˆä¸­å¿ƒé¢‘ç‡ï¼‰ï¼ŒHz
+fig = 0;   % æ˜¯å¦ç”»å›¾ï¼Œ0ä¸ºå¦ï¼Œ1ä¸ºæ˜¯
+ap = 0.7;  % è®¾å®šå­æ³¢å³°å€¼ä½ç½®
+no = -25;    % åŠ å…¥ç™½å™ªï¼Œå•ä½dbï¼Œwgnå‡½æ•°çš„å‚æ•°
+timeDic = 1000*(0:1/fs:1/fs*(sampleLen-1)); % è½¬åŒ–åˆ°ms
+%% ç”Ÿæˆé›·å…‹å­æ³¢
 [OriData, noisedData, noise] = RickerWavelet(sampleLen, fs, fm, ap, no, fig);
 waveData = OriData;
-%% ¼ÆËã¹¦ÂÊÆ×
-N = length(waveData);%Êı¾İ³¤¶È
+%% è®¡ç®—åŠŸç‡è°±
+N = length(waveData);%æ•°æ®é•¿åº¦
 %i = 0:N-1;
 %t = i/fs;
-f = (0:N-1)*fs/N;%ºá×ø±êÆµÂÊµÄ±í´ïÊ½Îªf=(0:M-1)*Fs/M;??
-% 1¡¢Ô­Ê¼Êı¾İ¼ÆËã
-%f=100;%Éè¶¨ÕıÏÒĞÅºÅÆµÂÊ?%Éú³ÉÕıÏÒĞÅºÅ?
-waveData2 = fft(waveData,N);%½øĞĞfft±ä»»?
-mag = abs(waveData2);%Çó·ùÖµ?
-%f = (0:N-1)*fs/N;%ºá×ø±êÆµÂÊµÄ±í´ïÊ½Îªf=(0:M-1)*Fs/M;??
+f = (0:N-1)*fs/N;%æ¨ªåæ ‡é¢‘ç‡çš„è¡¨è¾¾å¼ä¸ºf=(0:M-1)*Fs/M;??
+% 1ã€åŸå§‹æ•°æ®è®¡ç®—
+%f=100;%è®¾å®šæ­£å¼¦ä¿¡å·é¢‘ç‡?%ç”Ÿæˆæ­£å¼¦ä¿¡å·?
+waveData2 = fft(waveData,N);%è¿›è¡Œfftå˜æ¢?
+mag = abs(waveData2);%æ±‚å¹…å€¼?
+%f = (0:N-1)*fs/N;%æ¨ªåæ ‡é¢‘ç‡çš„è¡¨è¾¾å¼ä¸ºf=(0:M-1)*Fs/M;??
 Opower = mag.^2;
-% 2¡¢º¬ÔëÉùÊı¾İ¼ÆËã
-%f=100;%Éè¶¨ÕıÏÒĞÅºÅÆµÂÊ?%Éú³ÉÕıÏÒĞÅºÅ?
-noisedData2 = fft(noisedData,N);%½øĞĞfft±ä»»?
-mag = abs(noisedData2);%Çó·ùÖµ?
-%f = (0:N-1)*fs/N;%ºá×ø±êÆµÂÊµÄ±í´ïÊ½Îªf=(0:M-1)*Fs/M;??
+% 2ã€å«å™ªå£°æ•°æ®è®¡ç®—
+%f=100;%è®¾å®šæ­£å¼¦ä¿¡å·é¢‘ç‡?%ç”Ÿæˆæ­£å¼¦ä¿¡å·?
+noisedData2 = fft(noisedData,N);%è¿›è¡Œfftå˜æ¢?
+mag = abs(noisedData2);%æ±‚å¹…å€¼?
+%f = (0:N-1)*fs/N;%æ¨ªåæ ‡é¢‘ç‡çš„è¡¨è¾¾å¼ä¸ºf=(0:M-1)*Fs/M;??
 NDpower = mag.^2;
-% 3¡¢½öÔëÉùÊı¾İ¼ÆËã
-%f=100;%Éè¶¨ÕıÏÒĞÅºÅÆµÂÊ?%Éú³ÉÕıÏÒĞÅºÅ?
-noise2 = fft(noise,N);%½øĞĞfft±ä»»?
-mag = abs(noise2);%Çó·ùÖµ?
-%f = (0:N-1)*fs/N;%ºá×ø±êÆµÂÊµÄ±í´ïÊ½Îªf=(0:M-1)*Fs/M;??
+% 3ã€ä»…å™ªå£°æ•°æ®è®¡ç®—
+%f=100;%è®¾å®šæ­£å¼¦ä¿¡å·é¢‘ç‡?%ç”Ÿæˆæ­£å¼¦ä¿¡å·?
+noise2 = fft(noise,N);%è¿›è¡Œfftå˜æ¢?
+mag = abs(noise2);%æ±‚å¹…å€¼?
+%f = (0:N-1)*fs/N;%æ¨ªåæ ‡é¢‘ç‡çš„è¡¨è¾¾å¼ä¸ºf=(0:M-1)*Fs/M;??
 Npower = mag.^2;
 
-%% »æÍ¼
+%% ç»˜å›¾
 h = figure;
 titleStr = ['fs = ' num2str(fs) ',' 'fm=' num2str(fm) ',' 'no=' num2str(no), 'sampleLen = ' num2str(sampleLen) ];
 suptitle(titleStr);
-%set(h,'name','HaarĞ¡²¨±ä»»','Numbertitle','off')
+%set(h,'name','Haarå°æ³¢å˜æ¢','Numbertitle','off')
 subplot(3,2,1);
 plot(timeDic,waveData);
 title('Ricker wavelet');xlabel('Time /ms');ylabel('Amplitude /mV');
@@ -57,7 +57,7 @@ box on;xlim([1 fs/2]);
 set(gcf, 'color', 'w');
 set(gca, 'FontName', 'Times New Roman');
 
-% º¬ÔëÉùĞÅºÅ
+% å«å™ªå£°ä¿¡å·
 subplot(3,2,3);
 plot(timeDic,noisedData);
 title('Noise Ricker wavelet');xlabel('Time /ms');ylabel('Amplitude /mV');
@@ -76,7 +76,7 @@ box on;xlim([1 fs/2]);
 set(gcf, 'color', 'w');
 set(gca, 'FontName', 'Times New Roman');
 
-% ÔëÉù
+% å™ªå£°
 subplot(3,2,5);
 plot(timeDic,noise);
 title('Noise');xlabel('Time /ms');ylabel('Amplitude /mV');
@@ -99,18 +99,18 @@ saveas(gcf, [titleStr '.fig']);
 save([['Noised-Ricker-[' titleStr ']'] '.mat'], 'noisedData');
 save([['Orignal-Ricker-[' titleStr ']'] '.mat'], 'OriData');
 
-%% ¶ÌÊ±¸µÁ¢Ò¶±ä»»
-%clear all  %´°¿Úº¯Êı% 
+%% çŸ­æ—¶å‚…ç«‹å¶å˜æ¢
+%clear all  %çª—å£å‡½æ•°% 
 % n1=40;  window=boxcar(n1); w1=window; 
 % figure; 
-% stem(w1);  % ·ÇÆ½ÎÈĞÅºÅ²úÉú% fs=1000; 
+% stem(w1);  % éå¹³ç¨³ä¿¡å·äº§ç”Ÿ% fs=1000; 
 % a=0:1/fs:1; 
 % f0=0; 
 % f1=150;  
 % y1=chirp(a,f0,1,f1); 
 % x=y1(1:510);  
 % figure; 
-% plot(x);  % ¶ÌÊ±¸µÀïÒ¶±ä»»%  
+% plot(x);  % çŸ­æ—¶å‚…é‡Œå¶å˜æ¢%  
 % t=1:length(x); 
 % n=length(x);  
 % [tfr,t,f]=tfrstft(x,t,n,w1,0); 
